@@ -24,3 +24,14 @@ footer{padding:42px 24px 28px;text-align:center}
 .internal-page .services,.internal-page .contact{padding:45px 20px}
 .internal-page .services>article{grid-template-columns:1fr}
 }
+/* tema automático + idioma */
+.langSelect{border:1px solid #ddd;border-radius:8px;background:transparent;color:inherit;padding:8px 10px;font-weight:700}
+footer .footerGrid img{content:url("logo-carvix-footer.svg")}
+@media(prefers-color-scheme:dark){
+:root{color-scheme:dark}body{background:#0b0b0b;color:#f5f5f5}.top,body>header:not(.top){background:#101010}.top nav a,body>header:not(.top) nav a{color:#f2f2f2}.top nav a.active{color:#ff6900}
+.serviceCard,.leadForm,.modalBox,.internal-page .services>article>div{background:#171717;border-color:#2b2b2b}.serviceCard p,.sectionHead p,.transformation>div:first-child p,.contact>div>p,.internal-page .hero p{color:#aaa}
+.light{background:#1a1a1a!important;color:#fff!important;border-color:#555}.quotes article{background:#151515;border-color:#292929}.leadForm input,.leadForm select,.leadForm textarea{background:#101010;color:#fff;border-color:#333}
+#chat{background:#171717;color:#fff}.bot{background:#292929}.quick button{background:#171717}.modal{background:#000c}.langSelect{border-color:#444}
+body>header:not(.top)+main>.hero,.internal-page .hero{color:#f5f5f5}.top nav.open,body>header:not(.top) nav.open{background:#101010}
+}
+@media(max-width:900px){.langSelect{width:100%;margin:4px 0}}
