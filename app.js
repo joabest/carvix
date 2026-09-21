@@ -33,3 +33,22 @@ document.querySelectorAll('#chat header').forEach(h=>{if(h.querySelector('.chatA
 chatBtn?.addEventListener('click',()=>logEvent('Chat aberto'));q('#close')?.addEventListener('click',()=>logEvent('Chat fechado'));
 /* arrastar depoimentos com mouse/toque */
 const rv=q('.reviewViewport');if(rv){let down=false,x=0,start=0;rv.style.cursor='grab';rv.addEventListener('pointerdown',e=>{down=true;x=e.clientX;start=rv.scrollLeft;rv.setPointerCapture(e.pointerId);rv.style.cursor='grabbing'});rv.addEventListener('pointermove',e=>{if(down)rv.scrollLeft=start-(e.clientX-x)});rv.addEventListener('pointerup',()=>{down=false;rv.style.cursor='grab'});rv.addEventListener('pointercancel',()=>down=false)}
+
+/* seletor manual de aparência: automático -> escuro -> claro */
+function carvixTheme(){
+ const saved=localStorage.getItem('carvix_theme')||'auto';
+ const dark=saved==='dark'||(saved==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+ document.documentElement.dataset.theme=dark?'dark':'light';
+ document.querySelectorAll('.top .logo').forEach(i=>i.src=dark?'logo-carvix-dark.svg':'logo-cv.png');
+ document.querySelectorAll('footer img').forEach(i=>i.src='logo-carvix-dark.svg');
+ const b=document.querySelector('.themeToggle');
+ if(b){b.textContent=saved==='auto'?'◐':saved==='dark'?'☾':'☀';b.title='Tema: '+saved}
+}
+(function(){
+ const nav=document.querySelector('.top nav'); if(!nav)return;
+ let b=document.querySelector('.themeToggle');
+ if(!b){b=document.createElement('button');b.type='button';b.className='themeToggle';b.setAttribute('aria-label','Alternar tema');const lang=document.querySelector('.langSelect');if(lang)lang.after(b);else nav.insertBefore(b,nav.querySelector('.navcta'))}
+ b.onclick=function(){const s=localStorage.getItem('carvix_theme')||'auto';localStorage.setItem('carvix_theme',s==='auto'?'dark':s==='dark'?'light':'auto');carvixTheme()};
+ carvixTheme();
+ matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change',carvixTheme);
+})();
