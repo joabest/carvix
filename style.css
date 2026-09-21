@@ -90,3 +90,31 @@ html[data-theme="light"]{color-scheme:light}html[data-theme="light"] body{backgr
  .chatMenu{position:absolute;right:16px;top:72px;background:rgba(15,20,27,.96);backdrop-filter:blur(18px);border:1px solid #ffffff18;border-radius:14px;padding:7px;display:none;z-index:4;box-shadow:0 16px 40px #0008}.chatMenu.open{display:grid}.chatMenu a{color:#fff;text-decoration:none;padding:11px 14px;border-radius:9px;white-space:nowrap}.chatMenu a:hover{background:#ffffff10}
  #chatBtn{width:58px!important;height:58px!important;border-radius:50%!important;background:#ff6900 url('android-chrome-192x192.png') center/62% no-repeat!important;box-shadow:0 12px 32px #0005,0 0 0 1px #ffffff22!important}#chatBtn span{display:none!important}
 }
+
+/* FINAL MOBILE PASS */
+@media(max-width:900px){
+ body{overflow-x:hidden}
+ .top{height:78px!important;min-height:78px!important;padding:0 22px!important;width:100%!important}
+ .top .logo{width:min(212px,58vw)!important;max-height:56px!important}
+ .menu{display:flex!important;align-items:center!important;justify-content:center!important;width:48px!important;height:48px!important;min-width:48px!important;margin:0 0 0 auto!important;padding:0!important;font-size:0!important;color:inherit!important}
+ .menu:after{content:"☰";font-size:38px;line-height:1}
+ .top nav{position:absolute!important;z-index:999!important;top:78px!important;left:14px!important;right:14px!important;width:auto!important;padding:22px!important;border-radius:0 0 20px 20px!important;background:rgba(15,15,15,.98)!important;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 25px 60px #0008}
+ .top nav a{font-size:16px!important;padding:10px 0!important;color:#fff!important}
+ .top nav .langSelect,.top nav .themeToggle,.top nav .navcta{width:100%!important;min-height:48px!important}
+ .top nav .themeToggle{display:flex!important;gap:9px!important;color:#fff!important;border-color:#444!important;background:#181818!important}
+ .hero{height:auto!important;min-height:0!important;display:block!important;background-size:cover!important;background-position:center!important}
+ .heroShade{background:linear-gradient(180deg,rgba(0,0,0,.08) 0%,rgba(0,0,0,.18) 28%,rgba(0,0,0,.88) 73%,#090909 100%)!important}
+ .heroContent{min-height:calc(100svh - 78px)!important;display:flex!important;flex-direction:column!important;justify-content:flex-end!important;padding:clamp(250px,39vh,390px) 28px 86px!important}
+ .heroContent>small{font-size:14px!important}.hero h1{font-size:clamp(40px,10.2vw,58px)!important;line-height:1.02!important;margin:14px 0 18px!important;max-width:100%!important}
+ .hero p{font-size:17px!important;line-height:1.5!important;margin:0!important}
+ .hero .actions{display:grid!important;grid-template-columns:1fr!important;width:100%!important;gap:12px!important;margin-top:25px!important}
+ .hero .actions .btn{width:100%!important;min-height:54px!important;display:flex!important;align-items:center!important;justify-content:center!important}
+ .slideArrow{display:none!important}.dots{bottom:24px!important;left:50%!important;transform:translateX(-50%)!important}
+ .trust{position:relative!important;z-index:2!important;grid-template-columns:1fr 1fr!important;padding:26px 24px!important;gap:24px 16px!important}
+ .trust>div{min-width:0}.trust .ico{width:46px!important;height:46px!important;flex:0 0 46px!important}
+}
+@media(max-width:520px){
+ .heroContent{padding-left:24px!important;padding-right:24px!important}
+ .trust{grid-template-columns:1fr!important}
+ .top .logo{width:min(200px,60vw)!important}
+}
