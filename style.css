@@ -118,3 +118,14 @@ html[data-theme="light"]{color-scheme:light}html[data-theme="light"] body{backgr
  .trust{grid-template-columns:1fr!important}
  .top .logo{width:min(200px,60vw)!important}
 }
+
+/* CHAT polish */
+#chat .chatActions{display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:7px!important}
+#chat .chatActions>a,#chat .chatActions>button{position:relative;width:32px!important;height:32px!important;min-width:32px!important;padding:0!important;display:grid!important;place-items:center!important;border:0!important;border-radius:50%!important;color:#fff!important;text-decoration:none!important;font-size:19px!important;line-height:1!important;background:transparent!important}
+#chat .chatActions>a:hover,#chat .chatActions>button:hover{background:#ffffff18!important}
+#chat .chatWhatsapp{font-size:18px!important}.waGlyph{transform:rotate(-12deg);font-weight:900}
+.onlineDot{position:absolute;right:2px;bottom:3px;width:8px;height:8px;border-radius:50%;background:#38d46a;border:2px solid #ff6900;animation:chatOnline 1.35s ease-in-out infinite}
+@keyframes chatOnline{0%,100%{opacity:1;box-shadow:0 0 0 0 #38d46a88}50%{opacity:.45;box-shadow:0 0 0 5px #38d46a00}}
+.chatTyping{display:none;align-items:center;gap:8px;padding:8px 16px 12px;color:#aaa;font-size:11px}.chatTyping.show{display:flex}
+.typingDots{display:flex;gap:3px}.typingDots i{display:block;width:5px;height:5px;border-radius:50%;background:#ff6900;animation:typingBounce 1s infinite ease-in-out}.typingDots i:nth-child(2){animation-delay:.15s}.typingDots i:nth-child(3){animation-delay:.3s}
+@keyframes typingBounce{0%,60%,100%{transform:translateY(0);opacity:.35}30%{transform:translateY(-4px);opacity:1}}
