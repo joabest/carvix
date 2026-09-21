@@ -74,3 +74,6 @@ function carvixTheme(){
  btn.addEventListener('click',()=>{if(innerWidth<=600){box.classList.add('chatOpen');document.body.style.overflow='hidden'}});
  box.querySelector('#close')?.addEventListener('click',()=>{box.classList.remove('chatOpen');document.body.style.overflow=''});
 })();
+
+/* correção final: tema acessível dentro do menu mobile */
+(function(){const nav=document.querySelector('.top nav');if(!nav)return;function ensure(){let b=nav.querySelector('.themeToggle');if(!b){b=document.createElement('button');b.type='button';b.className='themeToggle';b.setAttribute('aria-label','Tema: automático, escuro ou claro');const lang=nav.querySelector('.langSelect');(lang||nav.querySelector('.navcta'))?.insertAdjacentElement(lang?'afterend':'beforebegin',b)}const s=localStorage.getItem('carvix_theme')||'auto';b.innerHTML=s==='auto'?'◐ <span>Automático</span>':s==='dark'?'☾ <span>Escuro</span>':'☀ <span>Claro</span>';b.onclick=()=>{const x=localStorage.getItem('carvix_theme')||'auto';localStorage.setItem('carvix_theme',x==='auto'?'dark':x==='dark'?'light':'auto');if(window.carvixTheme)window.carvixTheme();ensure()}}ensure()})();
