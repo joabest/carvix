@@ -77,3 +77,27 @@ function carvixTheme(){
 
 /* correção final: tema acessível dentro do menu mobile */
 (function(){const nav=document.querySelector('.top nav');if(!nav)return;function ensure(){let b=nav.querySelector('.themeToggle');if(!b){b=document.createElement('button');b.type='button';b.className='themeToggle';b.setAttribute('aria-label','Tema: automático, escuro ou claro');const lang=nav.querySelector('.langSelect');(lang||nav.querySelector('.navcta'))?.insertAdjacentElement(lang?'afterend':'beforebegin',b)}const s=localStorage.getItem('carvix_theme')||'auto';b.innerHTML=s==='auto'?'◐ <span>Automático</span>':s==='dark'?'☾ <span>Escuro</span>':'☀ <span>Claro</span>';b.onclick=()=>{const x=localStorage.getItem('carvix_theme')||'auto';localStorage.setItem('carvix_theme',x==='auto'?'dark':x==='dark'?'light':'auto');if(window.carvixTheme)window.carvixTheme();ensure()}}ensure()})();
+
+/* FINAL UI CONTROLS */
+(function(){
+ const nav=document.querySelector('.top nav'), menu=document.querySelector('.top .menu');
+ if(nav&&menu){
+   menu.onclick=()=>{nav.classList.toggle('open');menu.setAttribute('aria-expanded',nav.classList.contains('open')?'true':'false')};
+   nav.querySelectorAll('a,.navcta').forEach(el=>el.addEventListener('click',()=>nav.classList.remove('open')));
+ }
+ function setTheme(mode){
+   localStorage.setItem('carvix_theme',mode);
+   const dark=mode==='dark'||(mode==='auto'&&matchMedia('(prefers-color-scheme: dark)').matches);
+   document.documentElement.dataset.theme=dark?'dark':'light';
+   document.querySelectorAll('.top .logo').forEach(i=>i.src=dark?'logo-carvix-dark.svg':'logo-cv.png');
+   document.querySelectorAll('footer img').forEach(i=>i.src='logo-carvix-dark.svg');
+   const b=document.querySelector('.themeToggle');
+   if(b){b.innerHTML=(mode==='auto'?'◐ <span>Automático</span>':mode==='dark'?'☾ <span>Escuro</span>':'☀ <span>Claro</span>');b.dataset.mode=mode}
+ }
+ if(nav){
+   let b=nav.querySelector('.themeToggle');
+   if(!b){b=document.createElement('button');b.type='button';b.className='themeToggle';const lang=nav.querySelector('.langSelect');(lang||nav.querySelector('.navcta'))?.insertAdjacentElement(lang?'afterend':'beforebegin',b)}
+   b.onclick=e=>{e.preventDefault();e.stopPropagation();const m=b.dataset.mode||localStorage.getItem('carvix_theme')||'auto';setTheme(m==='auto'?'dark':m==='dark'?'light':'auto')};
+   setTheme(localStorage.getItem('carvix_theme')||'auto');
+ }
+})();
