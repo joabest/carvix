@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANTE: antes de enviar ao Search Console, substitua https://SEU-DOMINIO-AQUI pelo domínio oficial da CARVIX. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://SEU-DOMINIO-AQUI/</loc></url>
+  <url><loc>https://SEU-DOMINIO-AQUI/drywall.html</loc></url>
+  <url><loc>https://SEU-DOMINIO-AQUI/divisorias.html</loc></url>
+  <url><loc>https://SEU-DOMINIO-AQUI/forros.html</loc></url>
+  <url><loc>https://SEU-DOMINIO-AQUI/construcao-a-seco.html</loc></url>
+  <url><loc>https://SEU-DOMINIO-AQUI/zona-leste.html</loc></url>
+  <url><loc>https://SEU-DOMINIO-AQUI/zona-norte.html</loc></url>
+  <url><loc>https://SEU-DOMINIO-AQUI/zona-sul.html</loc></url>
+  <url><loc>https://SEU-DOMINIO-AQUI/zona-oeste.html</loc></url>
+  <url><loc>https://SEU-DOMINIO-AQUI/guarulhos.html</loc></url>
+</urlset>
