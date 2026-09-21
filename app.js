@@ -13,7 +13,7 @@ const modal=q('#quoteModal');qa('.openQuote').forEach(b=>b.onclick=()=>modal?.cl
 const chatBtn=q('#chatBtn'),chatBox=q('#chat');if(sessionStorage.getItem('carvix_chat_hidden')==='1'&&chatBtn)chatBtn.style.display='none';window.addEventListener('keydown',e=>{if(e.ctrlKey&&e.key==='F5')sessionStorage.removeItem('carvix_chat_hidden')});chatBtn?.addEventListener('click',()=>chatBox.style.display='block');q('#close')?.addEventListener('click',()=>{chatBox.style.display='none';chatBtn.style.display='none';sessionStorage.setItem('carvix_chat_hidden','1')});
 const add=(t,c)=>{const p=document.createElement('p');p.className=c;p.textContent=t;q('#msgs').append(p);q('#msgs').scrollTop=9999};
 const answer=t=>{t=t.toLowerCase();if(/orçamento|preço|valor/.test(t))return"Posso registrar seu pedido. Clique em 'Solicitar orçamento' ou informe qual serviço procura.";if(/serviço|servicos/.test(t))return"Trabalhamos com forros, divisórias, drywall e construção a seco.";if(/região|atendem|bairro/.test(t))return"Atendemos São Paulo e Guarulhos. Diga seu bairro para registrarmos sua consulta.";if(/forro/.test(t))return"Temos soluções em forros de gesso, PVC, modular e outros acabamentos.";if(/divis/.test(t))return"Trabalhamos com divisórias para escritórios, comércios e outros ambientes.";if(/drywall/.test(t))return"Drywall é uma solução versátil para paredes, fechamentos e reformas internas.";if(/atendente|whatsapp|humano/.test(t))return"Você pode falar com a equipe pelo WhatsApp: (11) 0000-0000.";return"Posso ajudar com orçamento, serviços, regiões atendidas, forros, divisórias ou drywall."};
-q('#chatForm')?.addEventListener('submit',e=>{e.preventDefault();let t=q('#chatInput').value.trim();if(!t)return;add(t,'user');q('#chatInput').value='';setTimeout(()=>add(window.carvixChatAnswer?window.carvixChatAnswer(t):answer(t),'bot'),350)});qa('.quick button').forEach(b=>b.onclick=()=>{add(b.textContent,'user');setTimeout(()=>add(window.carvixChatAnswer?window.carvixChatAnswer(b.textContent):answer(b.textContent),'bot'),250)});
+q('#chatForm')?.addEventListener('submit',e=>{e.preventDefault();let t=q('#chatInput').value.trim();if(!t)return;add(t,'user');q('#chatInput').value='';window.carvixNaturalReply(t)});qa('.quick button').forEach(b=>b.onclick=()=>{add(b.textContent,'user');window.carvixNaturalReply(b.textContent)});
 
 /* CARVIX UI 2026: identidade, idiomas, chat, slider e logs */
 const logEvent=(action,detail='')=>{const logs=JSON.parse(localStorage.getItem('carvix_logs')||'[]');logs.unshift({date:new Date().toLocaleString('pt-BR'),action,detail,page:location.pathname});localStorage.setItem('carvix_logs',JSON.stringify(logs.slice(0,300)))};
@@ -100,4 +100,23 @@ function carvixTheme(){
    b.onclick=e=>{e.preventDefault();e.stopPropagation();const m=b.dataset.mode||localStorage.getItem('carvix_theme')||'auto';setTheme(m==='auto'?'dark':m==='dark'?'light':'auto')};
    setTheme(localStorage.getItem('carvix_theme')||'auto');
  }
+})();
+
+/* conversa natural: status online, WhatsApp e atraso de resposta */
+(function(){
+ const chat=document.querySelector('#chat'), msgs=document.querySelector('#msgs'); if(!chat||!msgs)return;
+ const actions=chat.querySelector('.chatActions');
+ if(actions){
+   const more=actions.querySelector('.chatMore');
+   let wa=actions.querySelector('.chatWhatsapp');
+   if(!wa){wa=document.createElement('a');wa.className='chatWhatsapp';wa.href='#';wa.title='WhatsApp';wa.setAttribute('aria-label','WhatsApp');wa.innerHTML='<span class="waGlyph">◉</span><i class="onlineDot"></i>';actions.insertBefore(wa,more||actions.firstChild)}
+ }
+ const oldPlus=chat.querySelector('.chatPlus'); if(oldPlus) oldPlus.innerHTML='+';
+ const typing=document.createElement('div');typing.className='chatTyping';typing.innerHTML='<span class="typingLabel">Atendente está digitando</span><span class="typingDots"><i></i><i></i><i></i></span>';msgs.after(typing);
+ window.carvixNaturalReply=function(text){
+   const d=window.carvixChatAnswer?window.carvixChatAnswer(text):'';
+   typing.classList.add('show');
+   msgs.scrollTop=msgs.scrollHeight;
+   setTimeout(()=>{typing.classList.remove('show'); if(typeof add==='function')add(d,'bot');},4000);
+ };
 })();
