@@ -155,3 +155,7 @@ function carvixTheme(){
  const typing=document.querySelector('.typingLabel');if(typing)typing.textContent=lang==='en'?'Agent is typing':lang==='es'?'El asistente está escribiendo':'Atendente está digitando';
  window.carvixCurrentLang=()=>localStorage.getItem('carvix_lang')||deviceLang();
 })();
+
+/* sincroniza idioma global com chatbot e seletor */
+document.addEventListener('carvix:language',e=>{const l=e.detail.lang;const s=document.querySelector('.langSelect');if(s)s.value=l;const map={pt:['Assistente virtual','Atendente está digitando'],en:['Virtual assistant','Agent is typing'],es:['Asistente virtual','El agente está escribiendo']};const small=document.querySelector('#chat header small');if(small)small.textContent=map[l][0];const tl=document.querySelector('.typingLabel');if(tl)tl.textContent=map[l][1];});
+document.addEventListener('change',e=>{if(e.target.matches('.langSelect')&&window.CARVIX_I18N)window.CARVIX_I18N.set(e.target.value)});
