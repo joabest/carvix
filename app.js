@@ -120,3 +120,38 @@ function carvixTheme(){
    setTimeout(()=>{typing.classList.remove('show'); if(typeof add==='function')add(d,'bot');},4000);
  };
 })();
+
+/* I18N V2 — detecta dispositivo, persiste escolha e traduz conteúdo dinâmico */
+(function(){
+ const supported=['pt','en','es'];
+ function deviceLang(){const all=[...(navigator.languages||[]),navigator.language||''];for(const x of all){const b=String(x).toLowerCase().split('-')[0];if(supported.includes(b))return b}return 'pt'}
+ if(!localStorage.getItem('carvix_lang')) localStorage.setItem('carvix_lang',deviceLang());
+ const lang=localStorage.getItem('carvix_lang')||deviceLang();
+ document.documentElement.lang=lang==='pt'?'pt-BR':lang;
+ const sel=document.querySelector('.langSelect');if(sel){sel.value=lang;sel.onchange=()=>{localStorage.setItem('carvix_lang',sel.value);location.reload()}}
+ const heroI18n={
+ pt:[
+ ['SOLUÇÕES EM CONSTRUÇÃO A SECO','Ambientes que unem <em>qualidade, precisão</em> e acabamento.','Forros, divisórias e drywall para projetos residenciais, comerciais e corporativos.'],
+ ['DIVISÓRIAS PARA AMBIENTES CORPORATIVOS','Espaços que unem <em>organização</em> e produtividade.','Soluções de divisórias para transformar e aproveitar melhor cada ambiente.'],
+ ['FORROS E ACABAMENTOS','Acabamento que valoriza <em>cada detalhe</em> do projeto.','Soluções modernas para conforto, estética e desempenho do ambiente.']],
+ en:[
+ ['DRY CONSTRUCTION SOLUTIONS','Spaces that combine <em>quality, precision</em> and finishing.','Ceilings, partitions and drywall for residential, commercial and corporate projects.'],
+ ['PARTITIONS FOR CORPORATE SPACES','Spaces that combine <em>organization</em> and productivity.','Partition solutions designed to transform and make better use of every environment.'],
+ ['CEILINGS AND FINISHES','Finishing that enhances <em>every detail</em> of your project.','Modern solutions for comfort, aesthetics and environmental performance.']],
+ es:[
+ ['SOLUCIONES EN CONSTRUCCIÓN EN SECO','Ambientes que combinan <em>calidad, precisión</em> y acabado.','Cielorrasos, divisiones y drywall para proyectos residenciales, comerciales y corporativos.'],
+ ['DIVISIONES PARA ESPACIOS CORPORATIVOS','Espacios que combinan <em>organización</em> y productividad.','Soluciones de divisiones para transformar y aprovechar mejor cada ambiente.'],
+ ['CIELORRASOS Y ACABADOS','Acabados que realzan <em>cada detalle</em> de tu proyecto.','Soluciones modernas para confort, estética y rendimiento del ambiente.']]
+ };
+ if(typeof slides!=='undefined'&&heroI18n[lang]) heroI18n[lang].forEach((x,i)=>{if(slides[i]){slides[i].k=x[0];slides[i].t=x[1];slides[i].p=x[2]}});if(typeof showSlide==='function'&&document.querySelector('#home'))showSlide(si||0);
+ const extras={
+ en:{'Comentários demonstrativos do protótipo.':'Prototype testimonial examples.','Cliente demonstrativo':'Sample client','Nome':'Name','Telefone':'Phone','Mensagem':'Message','Selecione um serviço':'Select a service','Forros e acabamentos':'Ceilings and finishes','Política de Privacidade':'Privacy Policy','Termos de Uso':'Terms of Use','Site desenvolvido e otimizado por':'Website developed and optimized by','Atendente está digitando':'Agent is typing','Fazer ligação':'Make a call','Enviar e-mail':'Send email'},
+ es:{'Comentários demonstrativos do protótipo.':'Testimonios de ejemplo del prototipo.','Cliente demonstrativo':'Cliente de ejemplo','Nome':'Nombre','Telefone':'Teléfono','Mensagem':'Mensaje','Selecione um serviço':'Selecciona un servicio','Forros e acabamentos':'Cielorrasos y acabados','Política de Privacidade':'Política de Privacidad','Termos de Uso':'Términos de Uso','Site desenvolvido e otimizado por':'Sitio desarrollado y optimizado por','Atendente está digitando':'El asistente está escribiendo','Fazer ligação':'Hacer una llamada','Enviar e-mail':'Enviar correo'}
+ };
+ if(lang!=='pt'){
+   const map={...(LANG[lang]||{}),...(extras[lang]||{})};const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
+   while(n=w.nextNode()){if(['SCRIPT','STYLE'].includes(n.parentElement?.tagName))continue;const raw=n.nodeValue,trim=raw.trim();if(map[trim])n.nodeValue=raw.replace(trim,map[trim])}
+ }
+ const typing=document.querySelector('.typingLabel');if(typing)typing.textContent=lang==='en'?'Agent is typing':lang==='es'?'El asistente está escribiendo':'Atendente está digitando';
+ window.carvixCurrentLang=()=>localStorage.getItem('carvix_lang')||deviceLang();
+})();
