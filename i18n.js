@@ -156,6 +156,15 @@ Object.assign(D,{
 'Sistemas ST, RU e RF para paredes, revestimentos e soluções internas personalizadas.':['ST, MR and FR drywall systems, with tailored solutions for walls, linings and interior construction.','Sistemas ST, RU y RF con soluciones personalizadas para paredes, revestimientos y construcción interior.'],
 'Sancas, molduras e detalhes de acabamento para valorizar cada ambiente.':['Modern coves, moldings and finishing details designed to add sophistication and character to every space.','Molduras, cornisas y detalles de acabado modernos para aportar sofisticación a cada espacio.']
 });
+
+/* COPY REVIEW — homepage testimonials + polished EN */
+Object.assign(D,{
+'Experiências de clientes com nossos serviços.':['What clients say about working with CARVIX.','Experiencias de clientes con nuestros servicios.'],
+'Gesso, PVC, modular e fibra mineral.':['Gypsum, PVC, modular and mineral fiber ceiling systems for residential, commercial and corporate spaces.','Sistemas de yeso, PVC, modulares y fibra mineral para espacios residenciales, comerciales y corporativos.'],
+'Eucatex, vidro e soluções corporativas.':['Eucatex, glass and corporate partition solutions designed to create functional, organized and flexible spaces.','Eucatex, vidrio y soluciones corporativas para crear espacios funcionales y flexibles.'],
+'ST, RU, RF e soluções personalizadas.':['ST, MR and FR drywall systems with tailored solutions for walls, linings and interior construction.','Sistemas ST, RU y RF con soluciones personalizadas para paredes, revestimientos y construcción interior.'],
+'Acabamento moderno e sofisticado.':['Modern coves, moldings and finishing details that add sophistication and character to every space.','Molduras y detalles de acabado modernos que aportan sofisticación a cada espacio.']
+});
 const regional={
 'Zona Leste de São Paulo':['East Zone of São Paulo','Zona Este de São Paulo'],'Zona Norte de São Paulo':['North Zone of São Paulo','Zona Norte de São Paulo'],'Zona Sul de São Paulo':['South Zone of São Paulo','Zona Sur de São Paulo'],'Zona Oeste de São Paulo':['West Zone of São Paulo','Zona Oeste de São Paulo']
 };
