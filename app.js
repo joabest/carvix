@@ -171,3 +171,15 @@ function carvixTheme(){
 /* sincroniza idioma global com chatbot e seletor */
 document.addEventListener('carvix:language',e=>{const l=e.detail.lang;const s=document.querySelector('.langSelect');if(s)s.value=l;const map={pt:['Assistente virtual','Atendente está digitando'],en:['Virtual assistant','Agent is typing'],es:['Asistente virtual','El agente está escribiendo']};const small=document.querySelector('#chat header small');if(small)small.textContent=map[l][0];const tl=document.querySelector('.typingLabel');if(tl)tl.textContent=map[l][1];});
 document.addEventListener('change',e=>{if(e.target.matches('.langSelect')&&window.CARVIX_I18N)window.CARVIX_I18N.set(e.target.value)});
+
+/* HERO SWIPE/DRAG + clean header controls */
+(function(){
+ const hero=document.querySelector('#home'); if(!hero||typeof showSlide!=='function')return;
+ let startX=0,startY=0,drag=false,pointer=null;
+ const begin=(x,y,id)=>{startX=x;startY=y;drag=true;pointer=id};
+ const end=(x,y)=>{if(!drag)return;const dx=x-startX,dy=y-startY;drag=false;if(Math.abs(dx)>55&&Math.abs(dx)>Math.abs(dy)*1.2)showSlide(si+(dx<0?1:-1));};
+ hero.addEventListener('pointerdown',e=>{if(e.target.closest('button,a'))return;begin(e.clientX,e.clientY,e.pointerId);hero.setPointerCapture?.(e.pointerId)});
+ hero.addEventListener('pointerup',e=>end(e.clientX,e.clientY));hero.addEventListener('pointercancel',()=>drag=false);
+ hero.addEventListener('touchstart',e=>{const t=e.touches[0];begin(t.clientX,t.clientY,'touch')},{passive:true});
+ hero.addEventListener('touchend',e=>{const t=e.changedTouches[0];end(t.clientX,t.clientY)},{passive:true});
+})();
