@@ -183,3 +183,10 @@ document.addEventListener('change',e=>{if(e.target.matches('.langSelect')&&windo
  hero.addEventListener('touchstart',e=>{const t=e.touches[0];begin(t.clientX,t.clientY,'touch')},{passive:true});
  hero.addEventListener('touchend',e=>{const t=e.changedTouches[0];end(t.clientX,t.clientY)},{passive:true});
 })();
+
+/* MOBILE LIVE LANGUAGE SWITCH — no reload required */
+(function(){
+ const sync=()=>{const s=document.querySelector('.langSelect');if(!s)return;s.onchange=e=>{e.stopPropagation();const l=s.value;localStorage.setItem('carvix_lang',l);if(window.CARVIX_I18N){window.CARVIX_I18N.set(l);if(typeof renderReviews==='function')renderReviews();if(typeof showSlide==='function'&&document.querySelector('#home'))showSlide(typeof si==='number'?si:0);}else location.reload();};};
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sync);else sync();
+ document.addEventListener('carvix:language',()=>{if(typeof renderReviews==='function')renderReviews();if(typeof showSlide==='function'&&document.querySelector('#home'))showSlide(typeof si==='number'?si:0);});
+})();
