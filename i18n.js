@@ -148,6 +148,14 @@ const D={
 "Pinheiros, Lapa, Perdizes, Pompeia, Vila Madalena, Butantã, Alto de Pinheiros, Jaguaré e Barra Funda.":["Pinheiros, Lapa, Perdizes, Pompeia, Vila Madalena, Butantã, Alto de Pinheiros, Jaguaré and Barra Funda.","Pinheiros, Lapa, Perdizes, Pompeia, Vila Madalena, Butantã, Alto de Pinheiros, Jaguaré y Barra Funda."],
 "Centro, Vila Galvão, Maia, Macedo, Pimentas, Bonsucesso, Cumbica e Taboão.":["Centro, Vila Galvão, Maia, Macedo, Pimentas, Bonsucesso, Cumbica and Taboão.","Centro, Vila Galvão, Maia, Macedo, Pimentas, Bonsucesso, Cumbica y Taboão."]
 };
+
+/* CARVIX COPY EN — service cards / homepage */
+Object.assign(D,{
+'Sistemas em gesso, PVC, modular e fibra mineral para ambientes residenciais, comerciais e corporativos.':['Gypsum, PVC, modular and mineral fiber ceiling systems for residential, commercial and corporate spaces.','Sistemas de yeso, PVC, modulares y fibra mineral para espacios residenciales, comerciales y corporativos.'],
+'Eucatex, vidro e soluções corporativas para ambientes funcionais, organizados e flexíveis.':['Eucatex, glass and corporate partition solutions designed to create functional, organized and flexible spaces.','Eucatex, vidrio y soluciones corporativas diseñadas para crear espacios funcionales, organizados y flexibles.'],
+'Sistemas ST, RU e RF para paredes, revestimentos e soluções internas personalizadas.':['ST, MR and FR drywall systems, with tailored solutions for walls, linings and interior construction.','Sistemas ST, RU y RF con soluciones personalizadas para paredes, revestimientos y construcción interior.'],
+'Sancas, molduras e detalhes de acabamento para valorizar cada ambiente.':['Modern coves, moldings and finishing details designed to add sophistication and character to every space.','Molduras, cornisas y detalles de acabado modernos para aportar sofisticación a cada espacio.']
+});
 const regional={
 'Zona Leste de São Paulo':['East Zone of São Paulo','Zona Este de São Paulo'],'Zona Norte de São Paulo':['North Zone of São Paulo','Zona Norte de São Paulo'],'Zona Sul de São Paulo':['South Zone of São Paulo','Zona Sur de São Paulo'],'Zona Oeste de São Paulo':['West Zone of São Paulo','Zona Oeste de São Paulo']
 };
