@@ -190,3 +190,12 @@ document.addEventListener('change',e=>{if(e.target.matches('.langSelect')&&windo
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',bind);else bind();
  document.addEventListener('carvix:language',e=>{document.querySelectorAll('.langSelect').forEach(s=>s.value=e.detail.lang);if(typeof renderReviews==='function')renderReviews();if(typeof showSlide==='function'&&document.querySelector('#home'))showSlide(typeof si==='number'?si:0);bind();});
 })();
+
+/* CARVIX WhatsApp contact chooser */
+(function(){
+ const contacts=[['(11) 99182-7494','5511991827494'],['(11) 96680-1543','5511966801543']];
+ function close(){document.querySelector('.waChooser')?.remove()}
+ function open(e){e?.preventDefault();close();const lang=(window.CARVIX_I18N?.get?.()||'pt');const title=lang==='en'?'Choose a WhatsApp number':lang==='es'?'Elige un número de WhatsApp':'Escolha um número do WhatsApp';const box=document.createElement('div');box.className='waChooser';box.innerHTML='<button class="waChooserClose" aria-label="Fechar">×</button><strong>'+title+'</strong>'+contacts.map(x=>'<a href="https://wa.me/'+x[1]+'" target="_blank" rel="noopener"><span>WhatsApp</span><b>'+x[0]+'</b></a>').join('');document.body.appendChild(box);box.querySelector('.waChooserClose').onclick=close;setTimeout(()=>document.addEventListener('pointerdown',outside,{once:true}),0)}
+ function outside(e){const b=document.querySelector('.waChooser');if(b&&!b.contains(e.target)&&!e.target.closest('#whatsappBtn'))close()}
+ document.addEventListener('click',e=>{const b=e.target.closest('#whatsappBtn');if(b)open(e)});
+})();
