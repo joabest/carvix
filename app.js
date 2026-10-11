@@ -172,3 +172,22 @@ document.addEventListener('change',e=>{if(e.target.matches('.langSelect')&&windo
  function outside(e){const b=document.querySelector('.waChooser');if(b&&!b.contains(e.target)&&!e.target.closest('#whatsappBtn'))close()}
  document.addEventListener('click',e=>{const b=e.target.closest('#whatsappBtn');if(b)open(e)});
 })();
+
+/* Accessible flag picker and theme icon controller */
+(function(){
+ const flags={pt:'https://flagcdn.com/w40/br.png',en:'https://flagcdn.com/w40/us.png',es:'https://flagcdn.com/w40/es.png'};
+ const moon='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.9 13A9 9 0 0 1 11 3.1 9 9 0 1 0 20.9 13Z"/></svg>';
+ const sun='<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32 1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>';
+ const lang=()=>window.CARVIX_I18N?.get?.()||localStorage.getItem('carvix_lang')||'pt';
+ function paint(){
+  const s=document.querySelector('.langSelect'),nav=s?.parentElement;if(s&&nav){
+   let flag=nav.querySelector('.cvFlag');if(!flag){flag=document.createElement('img');flag.className='cvFlag';flag.alt='';flag.width=24;flag.height=17;s.before(flag)}
+   flag.src=flags[lang()]||flags.pt;
+  }
+  const b=document.querySelector('.themeToggle');if(b){const mode=localStorage.getItem('carvix_theme')||'auto';b.innerHTML=(mode==='light'?sun:moon);b.setAttribute('aria-label',lang()==='en'?'Change color theme':lang()==='es'?'Cambiar tema de color':'Alterar tema de cores');b.title=mode==='light'?'Modo claro':mode==='dark'?'Modo escuro':'Tema automático'}
+ }
+ document.addEventListener('carvix:language',paint);
+ document.addEventListener('change',e=>{if(e.target.matches('.langSelect'))requestAnimationFrame(paint)});
+ document.addEventListener('click',e=>{if(e.target.closest('.themeToggle'))requestAnimationFrame(paint)});
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{paint();setTimeout(paint,100)});else{paint();setTimeout(paint,100)}
+})();
