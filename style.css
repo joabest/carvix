@@ -143,3 +143,20 @@ html[data-theme="light"]{color-scheme:light}html[data-theme="light"] body{backgr
 .testimonials .quotes article{box-sizing:border-box!important;flex:0 0 calc((100% - 36px)/3)!important;min-width:0!important}
 }
 @media(max-width:900px){.testimonials .reviewViewport{width:100%;overflow:hidden}.testimonials .quotes article{box-sizing:border-box;flex-shrink:0}}
+
+/* Flag image and readable sun/moon controls */
+.top nav .cvFlag{width:24px;height:17px;object-fit:cover;border-radius:2px;pointer-events:none;flex-shrink:0;margin-right:-32px;position:relative;z-index:3;align-self:center}
+.top nav .langSelect{padding-left:36px!important;min-width:94px!important}
+.themeToggle,.top nav .themeToggle{display:grid!important;place-items:center!important;font-size:18px!important;line-height:1!important;min-width:42px!important;width:42px!important;height:42px!important;color:#fff!important;background:#181818!important;border:1px solid #666!important;overflow:visible!important}
+.themeToggle svg{width:21px;height:21px;display:block;flex-shrink:0}
+html[data-theme="light"] .themeToggle{background:#f3f3f3!important;color:#161616!important;border-color:#777!important}
+html[data-theme="light"] .testimonials{background:#f7f7f7!important;color:#151515!important}
+html[data-theme="light"] .testimonials h2,html[data-theme="light"] .testimonials small{color:#171717!important}
+html[data-theme="light"] .testimonials>p{color:#4b5563!important}
+html[data-theme="light"] .quotes article{background:#fff!important;color:#171717!important;border:1px solid #d1d5db!important}
+html[data-theme="light"] .quotes article p,html[data-theme="light"] .quotes article b{color:#171717!important}
+html[data-theme="light"] .quotes article small{color:#4b5563!important}
+html[data-theme="dark"] .testimonials{background:#0b0b0b!important;color:#fff!important}
+html[data-theme="dark"] .quotes article{background:#181818!important;color:#fff!important;border:1px solid #343434!important}
+html[data-theme="dark"] .quotes article small{color:#c0c0c0!important}
+@media(max-width:900px){.top nav.open .cvFlag{margin-right:-32px}.top nav.open .themeToggle{width:100%!important;min-width:100%!important}.top nav.open .langSelect{padding-left:38px!important}}
