@@ -160,3 +160,9 @@ html[data-theme="dark"] .testimonials{background:#0b0b0b!important;color:#fff!im
 html[data-theme="dark"] .quotes article{background:#181818!important;color:#fff!important;border:1px solid #343434!important}
 html[data-theme="dark"] .quotes article small{color:#c0c0c0!important}
 @media(max-width:900px){.top nav.open .cvFlag{margin-right:-32px}.top nav.open .themeToggle{width:100%!important;min-width:100%!important}.top nav.open .langSelect{padding-left:38px!important}}
+
+/* Language control: flag only, no PT/EN/ES labels */
+.top nav .langSelect{font-size:0!important;color:transparent!important;text-shadow:none!important;width:66px!important;min-width:66px!important;max-width:66px!important;padding:9px 10px 9px 35px!important}
+.top nav .langSelect option{font-size:20px!important;color:#fff!important}
+.top nav .cvFlag{margin-right:-33px!important}
+@media(max-width:900px){.top nav.open .langSelect{width:100%!important;min-width:100%!important;max-width:100%!important;padding-left:48px!important}.top nav.open .cvFlag{margin-right:-39px!important}}
